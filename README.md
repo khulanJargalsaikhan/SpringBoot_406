@@ -1,6 +1,11 @@
 # String Boot - Basic Security
 
-Exercise 402
+Exercise 403
 --------
 
-Create an application that uses a custom login form with the title, My Login Form.
+EXERCISE 4.03
+Create an application with 3 pages: a course page, a teacher page and a student page. 
+Also create 3 users: one with ADMIN role, one with USER role and one with both. 
+Finally, set the permissions on your security so that only people 
+with the admin role can see the teacher page and only people 
+with the user role can see the student page.

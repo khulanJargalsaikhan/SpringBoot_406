@@ -7,17 +7,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
 
     @RequestMapping("/")
-    public String index(){
+    public String homepage(){
         return "index";
     }
+
 
     @RequestMapping("/login")
     public String login(){
         return "login";
     }
 
+    @RequestMapping("/student")
+    public String student(){
+        return "student";
+    }
 
+    @RequestMapping("/teacher")
+    public String teacher(){
+        return "teacher";
+    }
 
-
+    @RequestMapping("/course")
+    public String course(){
+        return "course";
+    }
 
 }
