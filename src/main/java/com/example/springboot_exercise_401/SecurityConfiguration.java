@@ -17,13 +17,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.authorizeRequests()
-                .antMatchers("/teacher").hasRole("ADMIN")
-                .antMatchers("/student").hasRole("USER")
+        httpSecurity.authorizeRequests().antMatchers("/h2-console/**").permitAll()
+                .antMatchers("/admin").hasRole("ADMIN")
                 .antMatchers("/**").hasAnyRole("ADMIN", "USER")
                 .and()
                 .formLogin()
-                .loginPage("/login").permitAll();
+                .loginPage("/login").permitAll()
+                .and()
+                .logout()
+                .logoutSuccessUrl("/login?logout=true").permitAll();
 
         // for accessing H2 for debugging purpose
         httpSecurity.csrf().ignoringAntMatchers("/h2-console/**");
@@ -43,12 +45,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
-                .withDefaultSchema()
-                .withUser("teacher").password(passwordEncoder().encode("admin")).roles("ADMIN")
-                .and()
-                .withUser("student").password(passwordEncoder().encode("user")).roles("USER")
-                .and()
-                .withUser("superuser").password(passwordEncoder().encode("superuser")).roles("ADMIN", "USER");
+                .usersByUsernameQuery("select username, password, enabled from " +
+                        "user_table where username=?")
+                .authoritiesByUsernameQuery("select username, role from role_table " +
+                        "where username=?");
 
 
     }

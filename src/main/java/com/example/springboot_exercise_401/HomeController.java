@@ -17,19 +17,15 @@ public class HomeController {
         return "login";
     }
 
-    @RequestMapping("/student")
-    public String student(){
-        return "student";
+    @RequestMapping("/admin")
+    public String admin(){
+        return "admin";
     }
 
-    @RequestMapping("/teacher")
-    public String teacher(){
-        return "teacher";
+    @RequestMapping("/logout")
+    public String logout(){
+        return "redirect:/login?logout=true";
     }
 
-    @RequestMapping("/course")
-    public String course(){
-        return "course";
-    }
 
 }
