@@ -118,7 +118,9 @@ public class User {
 
 
 
-
+    public void clearPassword(){
+        this.password = "";
+    }
 
 
 }
