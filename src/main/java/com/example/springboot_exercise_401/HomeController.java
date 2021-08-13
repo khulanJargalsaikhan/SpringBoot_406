@@ -21,6 +21,9 @@ public class HomeController {
     @Autowired
     RoleRepository roleRepository;
 
+    @Autowired
+    CloudinaryConfig cloudc;
+
 
     @RequestMapping("/")
     public String homepage(){

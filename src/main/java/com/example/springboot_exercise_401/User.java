@@ -41,6 +41,8 @@ public class User {
     @Column(name = "enabled")
     private boolean enabled;
 
+    private String photo;
+
 
     // constructors
     public User() {
@@ -116,11 +118,21 @@ public class User {
         this.enabled = enabled;
     }
 
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
 
 
     public void clearPassword(){
         this.password = "";
     }
+
+
+
 
 
 }
